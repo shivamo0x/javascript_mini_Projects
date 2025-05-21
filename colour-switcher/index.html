@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Switcher</title>
+</head>
+<body>
+  <button style="width: 100px; height: 100px; font-weight: bold; font-size: 20px;" class="addmore" id="user-color">+</button>
+  <button class="color-changer" id="red"></button>
+  <button class="color-changer" id="green"></button>
+  <button class="color-changer" id="blue"></button>
+  <button class="color-changer" id="white"></button>
+  <button class="color-changer" id="black"></button>
+  <button class="color-changer" id="purple"></button> 
+  <script>
+    const body = document.querySelector('body');
+    body.style.backgroundColor = 'black';
+
+    const buttons = document.querySelectorAll('.color-changer');
+    buttons.forEach((button) => {
+      const color = button.id;
+
+      // Set button appearance
+      button.style.backgroundColor = color;
+      button.style.width = '100px';
+      button.style.height = '100px';
+      button.style.border = 'none';
+      button.style.color = (color === 'white') ? 'black' : 'white'; // better for white textcontent
+      button.style.fontSize = '20px';
+      button.style.fontWeight = 'bold';
+      button.style.cursor = 'pointer';
+      button.style.margin = '5px';
+      button.textContent = color;
+
+      // Set background on click
+      button.addEventListener('click', () => {
+        body.style.backgroundColor = color;
+      });
+    });
+    const addmorebutton = document.querySelector('.addmore');
+    addmorebutton.addEventListener('click',(e) =>{
+      const userColor = prompt('Enter a color name or hex code:');
+      if (userColor) {
+        body.style.backgroundColor = userColor;
+        const newButton = document.createElement('button');
+        newButton.style.backgroundColor = userColor;
+        newButton.style.width = '100px';
+        newButton.style.height = '100px';
+        newButton.style.padding = '2px';
+        newButton.style.border = 'none';
+        newButton.style.color = (userColor === 'white') ? 'black' : 'white'; // better for white textcontent
+        newButton.style.fontSize = '20px';
+        newButton.style.fontWeight = 'bold';
+        newButton.style.cursor = 'pointer';
+        newButton.style.margin = '5px';
+        newButton.textContent = userColor;
+        newButton.addEventListener('click', () => {
+          body.style.backgroundColor = userColor;
+        });
+        
+        document.body.appendChild(newButton);
+      }
+    })
+  </script>
+</body>
+</html>
